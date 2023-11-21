@@ -1,0 +1,13 @@
+package {
+    name "qoi" 
+    author "Brendan Hansen" 
+    url "git://onyxlang.io/repo/qoi" 
+    description "Quite OK image format encoder and decoder" 
+    version "0.0.2" 
+}
+
+config {
+    dependency_source_path "./lib" 
+    dependency_binary_path "./bin" 
+}
+
