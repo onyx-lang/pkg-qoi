@@ -1,5 +1,7 @@
 package qoi
 
+use core.math
+
 Image :: struct {
     width: u32;
     height: u32;
@@ -125,10 +127,10 @@ decode_image :: (buf: [] u8, allocator := context.allocator) -> Image {
 
 #local swap_endian :: macro (x: u32) -> u32 {
     y := x;
-    return (((y >> 24) & 0xff)      )
-        |  (((y >> 16) & 0xff) << 8 )
-        |  (((y >>  8) & 0xff) << 16)
-        |  (((y >>  0) & 0xff) << 24);
+    return (((y >> 24) & 0xff)      ) |
+           (((y >> 16) & 0xff) << 8 ) |
+           (((y >>  8) & 0xff) << 16) |
+           (((y >>  0) & 0xff) << 24);
 }
 
 #local output_color :: macro (c: Color) {
@@ -145,7 +147,7 @@ decode_image :: (buf: [] u8, allocator := context.allocator) -> Image {
     out_pos += img.channels;
 }
 
-#local srgb_to_rgb :: macro (c: Color) -> (r: u8, g: u8, b: u8) {
+#local srgb_to_rgb :: macro (c: Color) -> (u8, u8, u8) {
     sr := cast(f32) cast(u32) c.r / 255;
     sg := cast(f32) cast(u32) c.g / 255;
     sb := cast(f32) cast(u32) c.b / 255;
