@@ -3,7 +3,7 @@ package {
     author "Brendan Hansen" 
     url "git://onyxlang.io/repo/qoi" 
     description "Quite OK image format encoder and decoder" 
-    version "0.0.3" 
+    version "0.0.4" 
 }
 
 config {
